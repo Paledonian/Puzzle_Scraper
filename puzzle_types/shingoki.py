@@ -15,6 +15,11 @@ def decode(task_raw: str, width: int, height: int) -> dict:
     pos = 0
     i = 0
 
+    # handle optional leading gap letters before the first circle
+    while i < len(task_raw) and task_raw[i].islower():
+        pos += ord(task_raw[i]) - ord("a") + 1
+        i += 1
+
     while i < len(task_raw):
         ch = task_raw[i]
         if ch not in ("B", "W"):
